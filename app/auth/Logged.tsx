@@ -7,11 +7,11 @@ type User = {
   image: string;
 };
 
-export default function Logout({ image }: User) {
+export default function Logged ({ image }: User) {
   return (
     <div className="flex space-x-5">
       <button
-        className="w-fit bg-blue-500 px-4 py-2 rounded-xl"
+        className="w-fit text-white bg-blue-500 px-4 py-2 rounded-xl"
         onClick={() => signOut()}
       >
         Logout
