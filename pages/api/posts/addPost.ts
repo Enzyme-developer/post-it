@@ -7,6 +7,7 @@ export default async function addPost(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (req.method === "POST") {
   const session = await getServerSession(req, res, authOptions);
   const user = await prisma.user.findUnique({
     where: { email: session?.user?.email as string | undefined },
@@ -33,4 +34,5 @@ export default async function addPost(
   } catch (error) {
     console.log(error);
   }
+    }
 }
