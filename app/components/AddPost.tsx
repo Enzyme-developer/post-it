@@ -9,10 +9,20 @@ export default function AddPost() {
 
   //create post
   const { mutate } = useMutation(
-    async (text: string) => await axios.post("/api/posts/addPost", text)
+    async (title: any) => await axios.post("/api/posts/addPost", { title }),
+    {
+      onError: (error) => {
+        console.log(error);
+      },
+      onSuccess: (data) => {
+        console.log(data);
+        setText("");
+        setIsDisabled(false);
+      },
+    }
   );
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsDisabled(true);
     mutate(text);
